@@ -1,0 +1,26 @@
+.form{
+	width: 708px;
+	background-color: #459255;
+	border-radius: 10px;
+	padding: 31px 0 24px 0 ;
+}
+
+.label{
+	font-size: 48px;
+	font-family: 'Montserrat';
+	color: #fff;
+	margin-bottom: 43px;;
+}
+
+.btn{
+	background-color: #75D28F;
+	color:#fff;
+	font-family: 'Montserrat';
+	font-size: 36px;
+	width: 302px;
+	height: 64px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border:1px solid #75D28F;
+}
