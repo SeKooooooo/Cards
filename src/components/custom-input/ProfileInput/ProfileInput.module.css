@@ -1,9 +1,19 @@
+.item .ant-form-item-control-input-content{
+	display: flex !important;
+}
+
+.label{
+	margin-right: 23px;
+	font-size: 48px;
+	color: #fff;
+}
+
 .input{
 	width: 616px;
-	height: 52px;
+	height: 74px;
 	font-size: 26px;
 	color: #60AF76 !important;
-	margin-bottom: 15px;
+	border-radius:22px;
 }
 
 input.input::placeholder{

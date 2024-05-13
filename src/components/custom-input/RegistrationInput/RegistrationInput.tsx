@@ -10,7 +10,7 @@ type Props = {
 
 export function RegistrationInput({placeholder,name,required}: Props){
 	return(
-		<Form.Item className={style.item}>
+		<Form.Item className={style.item} name={name}>
 			<Input className={style.input} placeholder={placeholder} name={name} required={required}/>
 		</Form.Item>
 	)

@@ -1,26 +1,28 @@
-.input{
+.search{
 	width: 616px;
-	height: 52px;
+	height: 74px;
 	font-size: 26px;
 	color: #60AF76 !important;
-	margin-bottom: 15px;
+	border-radius:22px;
+	align-self: center;
+	margin-bottom: 20px;
 }
 
-input.input::placeholder{
+input.search::placeholder{
 	color: #60AF76 !important;
 }
 
-input.input:hover{
+input.search:hover{
 	border:1px solid #75D28F !important;
 	background-color: #fff !important;
 }
 
-input.input:active{
+input.search:active{
 	border:1px solid #75D28F !important;
 	background-color: #fff !important;
 }
 
-input.input:checked{
+input.search:checked{
 	border:1px solid #75D28F !important;
 	background-color: #fff !important;
 }

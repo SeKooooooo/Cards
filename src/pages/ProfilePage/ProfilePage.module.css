@@ -1,0 +1,24 @@
+.body{
+	height: 89.6vh;
+	background-color: #C9E1B6;
+	padding: 20px 220px 0 220px;
+	display: flex;
+	flex-wrap: wrap;
+	row-gap: 56px;
+	justify-content: space-between;
+}
+
+.title{
+	font-size: 64px;
+	font-weight: 'Montserrat';
+	color: #fff;
+	text-align: center;
+	width: 100%;
+	height: 30px;
+}
+
+.avatar{
+	width: 276px !important;
+	height: 276px !important; 
+	border-radius: 100%;
+}

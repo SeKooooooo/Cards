@@ -1,0 +1,11 @@
+.body{
+	height: 89.6vh;
+	background-color: #C9E1B6;
+	padding: 20px 220px 0 220px;
+}
+.loading{
+	text-align: center;
+	font-size: 30px;
+	color: #fff;
+	margin-top: 50px;
+}

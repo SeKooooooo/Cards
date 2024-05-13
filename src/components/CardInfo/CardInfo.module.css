@@ -1,0 +1,13 @@
+.info{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap:26px;
+	width: 840px;
+	height: 600px;
+}
+
+.text{
+	color:#fff;
+	font-size: 48px;
+}

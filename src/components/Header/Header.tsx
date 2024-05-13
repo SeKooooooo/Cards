@@ -1,17 +1,24 @@
 import { Flex, Image, Typography } from 'antd';
 import style from './Header.module.css'
-import srcLogo from '../../assept/icons/logo.svg'
-import { NavLink } from 'react-router-dom';
+import srcLogo from '../../accept/icons/logo.svg'
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../app/hooks';
+import { logout } from '../../features/authSlice';
+import { Paths } from '../paths';
+import { clear } from '../../features/pageSlice';
 
 export function Header() {
-
+	const dispatch = useAppDispatch()
+	const navigate = useNavigate()
 	const handleLogout = () =>{
-		console.log('exit')
+		dispatch(logout())
+		dispatch(clear())
+		navigate('/')
 	}
 
 	return (
 		<Flex align='center' justify='space-between' className={style.header}>
-			<NavLink to='/main' className={style.logoLink}>
+			<NavLink to={Paths.main} className={style.logoLink}>
 				<Image src={srcLogo} preview={false}  className={style.logo}/>
 			</NavLink>
 			<Flex gap='85px'>

@@ -1,0 +1,25 @@
+.pagination{
+	align-self: center;
+	margin-top: 20px;
+}
+
+.number{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	color: #fff;
+	font-size: 24px;
+	background-color: rgba(68,146,85, 0.5);
+	border-radius: 7px;
+	cursor: pointer;
+}
+
+.active{
+	background-color: #449255;
+}
+
+.number:hover{
+	background-color: #449255;
+}
