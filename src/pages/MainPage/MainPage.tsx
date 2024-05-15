@@ -6,7 +6,9 @@ import { Pagination } from '../../components/Pagination/Pagination';
 import { useState } from 'react';
 import { Search } from '../../components/Search/Search';
 import { Card } from '../../utils/Card';
-import { useSorted } from '../../hooks/useSorted';
+import { useUsers } from '../../hooks/useUsers';
+import { Sorted } from '../../components/Sorted/Sorted';
+import { optionsDirection, optionsSelect } from '../../const/options';
 
 export function MainPage() {
 	const [page, setPage] = useState<number>(1);
@@ -18,25 +20,40 @@ export function MainPage() {
 			name: `${user.first_name} ${user.last_name}`,
 			email: user.email,
 			avatar: user.avatar,
-			id: user.id,
+			id: String(user.id),
 		};
 		return info;
 	});
 
-	const [searchQuery, setSearchQuery] = useState('');
+	const [searchQuery, setSearchQuery] = useState<string>('');
+	const [sortedQuery,  setSortedQuery] = useState<string>('');
+	const [directionSorted, setDirectionSorted] = useState<string>('increase');
 
-	const searchUsers = useSorted(users!, searchQuery);
+	const sortedAndFiltersUsers = useUsers(users!, searchQuery, sortedQuery, directionSorted);
 	return (
 		<Flex className={styles.body} vertical>
 			{isLoading ? (
 				<Typography.Text className={styles.loading}>Loading...</Typography.Text>
 			) : (
-				<>
-					<Search
-						searchQuery={searchQuery}
-						setSearchQuery={setSearchQuery}
-					/>
-					<CardsList cards={searchUsers} />
+				<>	
+					<Flex justify='center' align='center' gap='30px' className={styles.sorted}>
+						<Search
+							searchQuery={searchQuery}
+							setSearchQuery={setSearchQuery}
+						/>
+						<Sorted 
+							sortedQuery={sortedQuery}
+							setSortedQuery={setSortedQuery}
+							options={optionsSelect}
+						/>
+
+						<Sorted 
+							sortedQuery={directionSorted}
+							setSortedQuery={setDirectionSorted}
+							options={optionsDirection}
+						/>
+					</Flex>
+					<CardsList cards={sortedAndFiltersUsers} />
 					<Pagination
 						totalPages={totalPages}
 						page={page}

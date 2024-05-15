@@ -20,7 +20,7 @@ export function CardPage() {
 		name: `${data?.data.first_name} ${data?.data.last_name}`,
 		email: data?.data.email!,
 		avatar: data?.data.avatar!,
-		id: data?.data.id!
+		id: String(data?.data.id!)
 	};
 
 	const [isRedactor, setIsRedactor] = useState<boolean>(false);
