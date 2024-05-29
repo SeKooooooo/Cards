@@ -1,48 +1,52 @@
-import { ProfileInput } from '../../custom-input/ProfileInput/ProfileInput';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { registerInfo, selectUserInfo } from '../../../features/authSlice';
+import { ProfileInput } from '../../index';
+import { useAppSelector } from '../../../app/hooks';
+import { selectUserInfo } from '../../../features/authSlice';
 import { useState } from 'react';
-import styles from './ProfileForm.module.css'
+import styles from './ProfileForm.module.css';
 import { Button, Form } from 'antd';
 import { useUpdateMutation } from '../../../app/services/auth';
 
-type Labels={
-	[key:string]: string
-}
+type Labels = {
+	[key: string]: string;
+};
 
-const labels: Labels={
+const labels: Labels = {
 	username: 'Name',
 	email: 'Email',
 	password: 'Password',
-	avatar: 'Avatar'
-}
+	avatar: 'Avatar',
+};
 
-export function ProfileForm(){
-	const [user,setUser] = useState(useAppSelector(selectUserInfo))
-	const [update] = useUpdateMutation()
-	const userChange=(e: React.ChangeEvent<HTMLInputElement>)=>{
-		const {value, name} = e.target
-		setUser(last=>{
-			let newUser = {...last}
-			newUser[name] = value
-			return newUser
-		})
-	}
+export const ProfileForm = () => {
+	const [user, setUser] = useState(useAppSelector(selectUserInfo));
+	const [update] = useUpdateMutation();
+	const userChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { value, name } = e.target;
+		setUser((last) => {
+			const newUser = { ...last };
+			newUser[name] = value;
+			return newUser;
+		});
+	};
 
-	const handleChangeUser = ()=>{
-		update(user)
-	}
+	const handleChangeUser = () => {
+		update(user);
+	};
 
-	return(
+	return (
 		<Form className={styles.form}>
-			{
-				Object.keys(user).map(key =>
-					<ProfileInput value={user[key]} name={key} required={true} userChange={userChange} label={labels[key]}/>
-				)
-			}
+			{Object.keys(labels).map((key) => (
+				<ProfileInput
+					value={user[key]}
+					name={key}
+					required={true}
+					userChange={(e) => userChange(e)}
+					label={labels[key]}
+				/>
+			))}
 			<Button onClick={handleChangeUser} className={styles.btnSave}>
 				Сохранить
 			</Button>
 		</Form>
-	)
-}
+	);
+};

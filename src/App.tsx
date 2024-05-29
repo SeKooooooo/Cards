@@ -1,40 +1,33 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import { Registration } from './pages/Registration/Registration';
+import  {RegistrationPage}  from './pages/RegistrationPage/RegistrationPage';
 import { Layout } from './components/Layout';
-import { MainPage } from './pages/MainPage/MainPage';
-import { ProfilePage } from './pages/ProfilePage/ProfilePage';
-import { RequireAuth } from './components/hoc/RequireAuth';
-import { CardPage } from './pages/CardPage/CardPage';
+import  MainPage  from './pages/MainPage/MainPage';
+import  ProfilePage  from './pages/ProfilePage/ProfilePage';
+import  CardPage  from './pages/CardPage/CardPage';
 
 function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path="/" element={<Registration />} />
+				<Route path="/" element={<RegistrationPage />} />
 				<Route element={<Layout />}>
 					<Route
 						path="/cards"
 						element={
-							<RequireAuth>
-								<MainPage />
-							</RequireAuth>
+							<MainPage/>
 						}
 					/>
 					<Route
 						path="/profile"
 						element={
-							<RequireAuth>
-								<ProfilePage />
-							</RequireAuth>
+							<ProfilePage />
 						}
 					/>
 					<Route
 						path="/cards/:id"
 						element={
-							<RequireAuth>
-								<CardPage/>
-							</RequireAuth>
+							<CardPage/>
 						}
 					/>
 				</Route>

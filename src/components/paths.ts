@@ -1,3 +1,3 @@
-export const Paths={
-	main: '/cards'
-}
+export const Paths = {
+	main: '/cards',
+};

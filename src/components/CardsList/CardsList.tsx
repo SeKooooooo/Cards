@@ -1,20 +1,24 @@
 import { Flex, Typography } from 'antd';
-import { CardItem } from '../CardItem/CardItem';
-import styles from './CardsList.module.css'
+import { CardItem } from '../index';
+import styles from './CardsList.module.css';
 import { Card } from '../../utils/Card';
 
-type Props={
-	cards: Card[] | undefined
-}
+type Props = {
+	cards: Card[] | undefined;
+};
 
-export function CardsList({cards}: Props){
+export const CardsList = ({ cards }: Props) => {
 	return (
 		<div className={styles.wrapper}>
-			<Flex justify='center' wrap='wrap' className={styles.list}>
-				{
-					cards?.length!==0 ? cards?.map(card => <CardItem key={card.id} card={card}/>) : <Typography.Text className={styles.text}>Не найдено</Typography.Text>
-				}
+			<Flex justify="center" wrap="wrap" className={styles.list}>
+				{cards?.length ? (
+					cards?.map((card) => <CardItem key={card.id} card={card} />)
+				) : (
+					<Typography.Text className={styles.text}>
+						Не найдено
+					</Typography.Text>
+				)}
 			</Flex>
 		</div>
-	)
-}
+	);
+};

@@ -1,16 +1,13 @@
-import { Flex,Typography } from 'antd';
+import { Flex, Typography } from 'antd';
 import styles from './MainPage.module.css';
 import { useGetCardsQuery } from '../../app/services/cards';
-import { CardsList } from '../../components/CardsList/CardsList';
-import { Pagination } from '../../components/Pagination/Pagination';
 import { useState } from 'react';
-import { Search } from '../../components/Search/Search';
+import { Search, Sorted, RequireAuth, Pagination, CardsList } from '../../components/index';
 import { Card } from '../../utils/Card';
 import { useUsers } from '../../hooks/useUsers';
-import { Sorted } from '../../components/Sorted/Sorted';
 import { optionsDirection, optionsSelect } from '../../const/options';
 
-export function MainPage() {
+const MainPage = () => {
 	const [page, setPage] = useState<number>(1);
 	const { data, isLoading } = useGetCardsQuery(page);
 
@@ -26,28 +23,40 @@ export function MainPage() {
 	});
 
 	const [searchQuery, setSearchQuery] = useState<string>('');
-	const [sortedQuery,  setSortedQuery] = useState<string>('');
+	const [sortedQuery, setSortedQuery] = useState<string>('');
 	const [directionSorted, setDirectionSorted] = useState<string>('increase');
 
-	const sortedAndFiltersUsers = useUsers(users!, searchQuery, sortedQuery, directionSorted);
+	const sortedAndFiltersUsers = useUsers(
+		users!,
+		searchQuery,
+		sortedQuery,
+		directionSorted
+	);
 	return (
 		<Flex className={styles.body} vertical>
 			{isLoading ? (
-				<Typography.Text className={styles.loading}>Loading...</Typography.Text>
+				<Typography.Text className={styles.loading}>
+					Loading...
+				</Typography.Text>
 			) : (
-				<>	
-					<Flex justify='center' align='center' gap='30px' className={styles.sorted}>
+				<>
+					<Flex
+						justify="center"
+						align="center"
+						gap="30px"
+						className={styles.sorted}
+					>
 						<Search
 							searchQuery={searchQuery}
 							setSearchQuery={setSearchQuery}
 						/>
-						<Sorted 
+						<Sorted
 							sortedQuery={sortedQuery}
 							setSortedQuery={setSortedQuery}
 							options={optionsSelect}
 						/>
 
-						<Sorted 
+						<Sorted
 							sortedQuery={directionSorted}
 							setSortedQuery={setDirectionSorted}
 							options={optionsDirection}
@@ -63,4 +72,6 @@ export function MainPage() {
 			)}
 		</Flex>
 	);
-}
+};
+
+export default RequireAuth<{}>(MainPage)
